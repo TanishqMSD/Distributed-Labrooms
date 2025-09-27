@@ -38,5 +38,5 @@ This repo is structured as a **monorepo** containing multiple independent servic
 ## 🏗️ Setup & Development
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/<your-username>/labrooms-distributed.git
-cd labrooms-distributed
+git clone https://github.com/TanishqMSD/Distributed-Labrooms.git
+cd Distributed-Labrooms
