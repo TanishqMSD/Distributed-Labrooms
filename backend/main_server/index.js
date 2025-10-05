@@ -12,7 +12,6 @@ import multer from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
 import path from 'path';
 
-import roomRoutes from './routes/rooms.js';
 import fileRoutes from './routes/files.js';
 import authRoutes from './routes/auth.js';
 
@@ -53,19 +52,7 @@ const upload = multer({
   }
 });
 
-// Import controllers
-import { 
-  getRooms,
-  createRoom,
-  getRoomByCode, 
-  getRoomById, 
-  deleteRoom, 
-  addMemberToRoom, 
-  getMembersOfRoom 
-} from './controllers/Room.controller.js';
 
-// Import models
-import Room from './models/Room.model.js';
 
 // Import middleware
 import { protect } from './middleware/auth.js';
@@ -120,17 +107,9 @@ mongoose
 
 // Mount routes
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/rooms', roomRoutes);
+
 app.use('/api/v1/files', fileRoutes);
 
-// Legacy routes (for backward compatibility)
-app.get('/rooms', getRooms);
-app.get('/rooms/code/:code', getRoomByCode);
-app.get('/rooms/:id', getRoomById);
-app.delete('/rooms/:id', deleteRoom);
-app.post('/rooms', createRoom);
-app.post('/rooms/:code/members', addMemberToRoom);
-app.get('/rooms/:code/members', getMembersOfRoom);
 
 app.get('/api/health', (req, res) => {
   res.status(200).send('OK');
