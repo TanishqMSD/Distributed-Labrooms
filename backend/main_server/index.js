@@ -14,6 +14,7 @@ import path from 'path';
 
 import fileRoutes from './routes/files.js';
 import authRoutes from './routes/auth.js';
+import Room from './models/Room.model.js';
 
 // const allowedOrigins = [
 //   'https://labrooms.vercel.app',  // Your production frontend URL
@@ -73,11 +74,14 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cookieParser());
 
+
+import roomRoutes from './routes/rooms.js';
+app.use('/api/v1/rooms', roomRoutes);
 // Enable CORS
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true
-}));
+// app.use(cors({
+//   origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+//   credentials: true
+// }));
 
 const allowedOrigins = [
   'https://labrooms.vercel.app',   // Your production frontend URL
