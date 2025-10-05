@@ -16,6 +16,11 @@ import roomRoutes from './routes/rooms.js';
 import fileRoutes from './routes/files.js';
 import authRoutes from './routes/auth.js';
 
+// const allowedOrigins = [
+//   'https://labrooms.vercel.app',  // Your production frontend URL
+//   'http://localhost:5173'         // Your local development URL
+// ];
+
 const RENDER_URL = "https://labrooms-an7k.onrender.com";
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -87,6 +92,17 @@ app.use(cors({
   credentials: true
 }));
 
+const allowedOrigins = [
+  'https://labrooms.vercel.app',   // Your production frontend URL
+  'http://localhost:5173',         // Your local development URL
+  'http://localhost:3000'          // This was in your code, so we'll keep it.
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
 // Dev logging middleware
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -126,12 +142,21 @@ app.use(errorHandler);
 
 // Create HTTP server and attach Socket.IO
 const server = createServer(app);
+// const io = new Server(server, {
+//   cors: {
+//     origin: '*',
+//     methods: ['GET', 'POST'],
+//   },
+// });
+
 const io = new Server(server, {
   cors: {
-    origin: '*',
+    origin: allowedOrigins, // Use the same allowed origins list
     methods: ['GET', 'POST'],
+    credentials: true // Match with the main app's CORS
   },
 });
+
 
 function pingServer() {
   https.get(RENDER_URL, (res) => {
