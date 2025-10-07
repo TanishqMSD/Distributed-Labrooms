@@ -1,6 +1,6 @@
 # Labrooms Distributed 
 
-**Labrooms Distributed** is the microservices + distributed systems implementation of [Labrooms](https://github.com/<your-normal-labrooms-repo>), a real-time collaborative platform for students to share **code, files, links, and whiteboards** inside temporary rooms.  
+**Labrooms Project** is the microservices + distributed systems implementation of [Labrooms](https://github.com/<your-normal-labrooms-repo>), a real-time collaborative platform for students to share **code, files, links, and whiteboards** inside temporary rooms.  
 
 This repo is structured as a **monorepo** containing multiple independent services (chat, file sharing, whiteboard, gateway, etc.), all tied together through distributed system principles such as **load balancing, replication, fault tolerance, and failover**.
 
